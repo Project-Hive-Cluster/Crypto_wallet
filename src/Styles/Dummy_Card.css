@@ -1,0 +1,131 @@
+/* :root {
+  font-size: 24px;
+} */
+
+/* body {
+  background: #1488cc;
+  background: linear-gradient(to left, #283593, #1976d2);
+
+} */
+
+/* .card-group {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+.card-group {
+  height: 270px;
+  width: 450px;
+  
+}
+
+.card {
+  
+  position: relative;
+  display: block;
+  height: 270px;
+  width: 450px;
+  /* max-height: 270px;
+  max-width: 450px; */
+  border-radius: 15px;
+ background: linear-gradient(to right, #382893, #1976d2);
+  backdrop-filter: blur(30px);
+border: none;
+box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  overflow: hidden;
+}
+
+.logo img,
+.logo .brand_titel,
+.chip img,
+.number,
+.name,
+.from,
+.to,
+.ring {
+  position: absolute; /* All items inside card should have absolute position */
+}
+
+.logo .brand_titel {
+font-size: 1.5rem;
+color: white;
+}
+
+
+
+.logo img,.logo .brand_titel  {
+  top: 35px;
+  right: 40px;
+  width: 50px;
+  height: auto;
+  opacity: 0.8;
+}
+
+.chip img {
+  top: 120px;
+  left: 40px;
+  width: 50px;
+  height: auto;
+  opacity: 0.8;
+}
+
+.number,
+.name,
+.from,
+.to {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+}
+
+.number {
+  font-size: 1.5rem;
+  left: 40px;
+  bottom: 65px;
+  font-family: "Nunito", sans-serif;
+}
+
+.name {
+  font-size: 1rem;
+  left: 40px;
+  bottom: 35px;
+}
+
+.from {
+  font-size: 0.5rem;
+  bottom: 35px;
+  right: 110px;
+}
+
+.to {
+  font-size: 0.5rem;
+  bottom: 35px;
+  right: 40px;
+}
+
+/* The two rings on the card background */
+.ring {
+  height: 500px;
+  width: 500px;
+  border-radius: 50%;
+  background: transparent;
+  border: 50px solid rgba(255, 255, 255, 0.1);
+  bottom: -250px;
+  right: -250px;
+  box-sizing: border-box;
+}
+
+.ring::after {
+  content: "";
+  position: absolute;
+  height: 600px;
+  width: 600px;
+  border-radius: 50%;
+  background: transparent;
+  border: 30px solid rgba(255, 255, 255, 0.1);
+  bottom: -80px;
+  right: -110px;
+  box-sizing: border-box;
+}

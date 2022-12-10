@@ -1,3 +1,4 @@
+import DummyCard from "../Components/DummyCard";
 
 
 
@@ -12,6 +13,7 @@ export default function Deposit({ PUBLICKEY = "hntry5by7nu56uw4enue46nu46eu" }) 
         <div class="col-lg-7 text-center text-lg-start">
           <h1 class="display-4 fw-bold lh-1 mb-3">Add Crypto</h1>
           <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+          <DummyCard />
         </div>
         <div class="col-md-10 mx-auto col-lg-5">
           <form class="p-4 p-md-5 border rounded-3 bg-light" data-bitwarden-watching="1">
