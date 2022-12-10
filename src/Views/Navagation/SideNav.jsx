@@ -1,90 +1,73 @@
 
-import logo from '../../../src/assets/react.svg' 
-
+import { Link } from 'react-router-dom'
 
 
 export default function SideNav() {
   return (
-    <div style={{ padding:'2rem' }}>
-     <HeroComponent/>
-<div className="accordion">
-  <input type="checkbox" id="reg" name="accordion-checkbox" hidden/>
-  <label className="accordion-header" htmlFor="reg">
-    <i className="icon icon-arrow-right mr-1"></i>
-    User
-  </label>
-  <div className="accordion-body">
-          {/* <!-- Accordions content --> */}
-          <RegistationNav/>
-  </div>
+    // <div style={{ padding: '1rem' }}>
+
+    <div className="accordion" id="accordionExample">
+      <div className="accordion-item">
+        <h2 className="accordion-header" id="headingOne">
+          <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Profile
+          </button>
+        </h2>
+        <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div className="accordion-body">
+
+            <RegistationNav />
+
+          </div>
+        </div>
       </div>
-      <div className="accordion">
-  <input type="checkbox" id="trans" name="accordion-checkbox" hidden/>
-  <label className="accordion-header" htmlFor="trans">
-    <i className="icon icon-arrow-right mr-1"></i>
-    Fund Management
-  </label>
-  <div className="accordion-body">
-          {/* <!-- Accordions content --> */}
-          <TransferNav/>
-  </div>
-</div>
+      <div className="accordion-item">
+        <h2 className="accordion-header" id="headingTwo">
+          <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Transaction
+          </button>
+        </h2>
+        <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div className="accordion-body">
+            <TransferNav />
+          </div>
+        </div>
       </div>
-        )
+
+    </div>
+    // </div>
+  )
 }
 
 export const HeroComponent = () => {
- 
-  return (
-<div className="hero">
-  <div className="hero-body">
-    <img src={logo} className="p-centered" />
-  
-  </div>
-</div>
 
-)
+  return (
+
+    <div className="px-4 py-5 text-center">
+      <img className="d-block mx-auto" src={logo} alt="" width="72" height="57" />
+
+      <div className="col-lg-6 mx-auto">
+      </div>
+    </div>
+
+
+  )
 }
 
 export const RegistationNav = () => {
-  return(<ul className="nav">
-  <li className="nav-item">
-    <a href="#">Register</a>
-  </li>
-  <li className="nav-item active">
-    <a href="#">Profile</a>
-    <ul className="nav">
-      <li className="nav-item">
-        <a href="#">Update</a>
-      </li>
-    </ul>
-  </li>
+  return (
+    <nav className="nav flex-column">
 
-
-</ul>)
+      <Link className="nav-link" to={'/'}>Dashboard</Link>
+      <Link className="nav-link" href="#">Statment</Link>
+    </nav>
+  )
 }
 
 export const TransferNav = () => {
-  return(<ul className="nav">
-  <li className="nav-item">
-    <a href="#">Transfer</a>
-  </li>
-  <li className="nav-item active">
-    <a href="#">Add Crypto</a>
-    <ul className="nav">
-      <li className="nav-item">
-        <a href="#">Add Card</a>
-      </li>
-      <li className="nav-item">
-        <a href="#">Deposit</a>
-      </li>
-    </ul>
-  </li>
-  <li className="nav-item">
-    <a href="#">Withdrow</a>
-  </li>
-  <li className="nav-item">
-    <a href="#">Report</a>
-  </li>
-</ul>)
+  return (<nav className="nav flex-column">
+    <Link className="nav-link" to={'/AddCrypto'}>Add Crypto</Link>
+    <Link className="nav-link" to={'/Transfer'}>Transfer</Link>
+    <Link className="nav-link">Link</Link>
+  </nav>)
 }

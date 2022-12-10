@@ -1,12 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Container from './Views/Container'
+import DefaultRouter from './Routes/Router'
 import './Styles/index.css'
-import 'materialize-css'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Container />
+    <DefaultRouter />
   </React.StrictMode>
 )
