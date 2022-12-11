@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import bgimg from "../../Images/stacked-steps-haikei.svg"
 
 
@@ -33,13 +34,13 @@ export default function Navbar() {
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
+                Menu
               </a>
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a className="dropdown-item" href="#">Action</a></li>
                 <li><a className="dropdown-item" href="#">Another action</a></li>
                 <li><hr className="dropdown-divider" /></li>
-                <li><a className="dropdown-item" href="#">Something else here</a></li>
+                <li><Link to={"/logout"} className="dropdown-item">Log Out</Link></li>
               </ul>
             </li>
           </ul>

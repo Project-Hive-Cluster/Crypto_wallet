@@ -1,6 +1,7 @@
 import './login.css'
 import CryptoPaisha from '../../../Images/CryptoPaisha.svg'
 import CardBgAni from './CardAnimation'
+import { Link } from 'react-router-dom'
 
 
 
@@ -38,7 +39,7 @@ export default function Login() {
                                             <h2 className="p-3 fw-bold mb-0 mt-4 ">Welcome to Crypto Wallet</h2>
                                             <img src={CryptoPaisha} height='100px' />
                                             <p className="p-0 text-secondary mt-0 mb-0 ">
-                                                Dear users, Please use your email address for login.
+                                                Dear users, Please use your email address htmlFor login.
                                             </p>
                                         </div>
                                         <div className="card-body col-10 mx-auto">
@@ -78,6 +79,10 @@ export default function Login() {
                                                 <button type="submit" className="btn btn-primary">
                                                     Login
                                                 </button>
+                                                <br />
+                                                <Link to="/" className="btn btn-primary">
+                                                    Emergeency Login
+                                                </Link>
                                             </div>
                                             <p className="small fw-normal mt-2 pt-1 mb-0">
                                                 By continuing to browse you agree to the storing cookies on

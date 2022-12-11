@@ -6,7 +6,7 @@ import SideNav from './Navagation/SideNav'
 import logo from "../Images/react.svg"
 
 
-export default function Container() {
+export default function Landing() {
   const [count, setCount] = useState(0)
 
   return (

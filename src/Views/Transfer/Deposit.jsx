@@ -27,14 +27,14 @@ export default function Deposit({ PUBLICKEY = "hntry5by7nu56uw4enue46nu46eu" }) 
             </div>
             <div className="form-floating mb-3">
               <input type="number" className="form-control" id="floatingInput" />
-              <label for="floatingInput">Amount</label>
+              <label htmlFor="floatingInput">Amount</label>
             </div>
             <div className="form-floating mb-3">
               <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
-              <label for="floatingPassword">PIN</label>
+              <label htmlFor="floatingPassword">PIN</label>
             </div>
             <div className="mb-3">
-              <label for="disabledSelect" className="form-label">Payment Type</label>
+              <label htmlFor="disabledSelect" className="form-label">Payment Type</label>
               <select id="disabledSelect" className="form-select">
                 <option>Cash</option>
                 <option>Card</option>

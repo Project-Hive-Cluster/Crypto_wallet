@@ -68,6 +68,7 @@ export const TransferNav = () => {
   return (<nav className="nav flex-column">
     <Link className="nav-link" to={'/AddCrypto'}>Add Crypto</Link>
     <Link className="nav-link" to={'/Transfer'}>Transfer</Link>
-    <Link className="nav-link">Link</Link>
+    <Link className="nav-link" to={'/Report'}>Report</Link>
+
   </nav>)
 }

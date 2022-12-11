@@ -4,15 +4,24 @@ import {
 } from 'react-router-dom'
 
 import FundTransfer from '../Views/Transfer/Transfer'
-import Container from '../Views/Container'
+import Landing from '../Views/Container'
 import Home from '../Views/Home/Home'
 import Deposit from '../Views/Transfer/Deposit'
 import Error404 from '../Views/Navagation/Error'
 import Login from '../Views/Components/Login/Login'
+import Report from '../Views/Transfer/Report'
 
 export default function DefaultRouter() {
+  // const authInfo = useContext(AuthContext)
+  // const { token } = authInfo.auth
+  // const { updateAuth } = authInfo
+  // console.log('==>', authInfo);
+  // useEffect(() => {
+  //   updateAuth()
+  // }, []);
   const token = true
   return (
+
     <BrowserRouter>
       <Routes>
         {!token ?
@@ -20,13 +29,15 @@ export default function DefaultRouter() {
             <Route exact path="*" element={<Error404 />} />
           </Route>
           :
-          <Route path="/" element={<Container />}>
+          <Route path="/" element={<Landing />}>
             <Route path="/" element={<Home />} />
             <Route path="/Transfer" element={<FundTransfer />} />
             <Route path="/AddCrypto" element={<Deposit />} />
+            <Route path="/Report" element={<Report />} />
             <Route path="/*" element={<Error404 />} />
           </Route>
         }
+        <Route path="/logout" element={<Login />} />
         <Route path="/*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>
