@@ -1,13 +1,14 @@
-import "../../Styles/Dummy_Card.css"
+import "../../Styles/CryptoCard.css"
+
 import snow from "../.././Images/snowflake-snow-svgrepo-com.svg"
 import chip from "../.././Images/chip.png"
 
-export default function DummyCard() {
+export default function CryptoCard() {
 
 
   return (
-    <div className="card-group">
-      <div className="card">
+    <div className="myCard-group">
+      <div className="myCard">
         <div className="logo">
           <img src={snow} alt="Visa" />
           {/* <h1 className="brand_titel">Crypto</h1> */}

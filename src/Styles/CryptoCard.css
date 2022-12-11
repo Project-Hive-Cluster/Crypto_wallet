@@ -8,20 +8,20 @@
 
 } */
 
-/* .card-group {
+/* .myCard-group {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 } */
-.card-group {
+.myCard-group {
   height: 270px;
   width: 450px;
-  
+  margin: 5px;
 }
 
-.card {
-  
+.myCard {
+
   position: relative;
   display: block;
   height: 270px;
@@ -44,7 +44,7 @@ box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2p
 .from,
 .to,
 .ring {
-  position: absolute; /* All items inside card should have absolute position */
+  position: absolute; /* All items inside myCard should have absolute position */
 }
 
 .logo .brand_titel {
@@ -105,7 +105,7 @@ color: white;
   right: 40px;
 }
 
-/* The two rings on the card background */
+/* The two rings on the myCard background */
 .ring {
   height: 500px;
   width: 500px;

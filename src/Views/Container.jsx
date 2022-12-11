@@ -11,8 +11,6 @@ export default function Container() {
 
   return (
     <main>
-
-
       <Navbar />
       <div className="offcanvas offcanvas-start" data-bs-scroll="true" tabIndex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
         <div className="offcanvas-header">

@@ -1,5 +1,5 @@
-import DummyCard from "../Components/DummyCard";
-
+import CryptoCard from "../Components/CryptoCard";
+import CardList from "../Components/CardAnimitation";
 
 
 
@@ -8,32 +8,42 @@ export default function Deposit({ PUBLICKEY = "hntry5by7nu56uw4enue46nu46eu" }) 
 
 
   return (
-    <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-      <div class="row align-items-center g-lg-5 py-5">
-        <div class="col-lg-7 text-center text-lg-start">
-          <h1 class="display-4 fw-bold lh-1 mb-3">Add Crypto</h1>
-          <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
-          <DummyCard />
+    <div className="container col-xl-10 col-xxl-8  py-5">
+      <div className="row align-items-center g-lg-5 ">
+        <CardList />
+        <div
+          className="container col-md-6 text-center text-lg-start m-2
+       d-md-block d-lg-block d-xl-block d-none 
+        ">
+          <h1 className="display-4 fw-bold lh-1 mb-3">Add Crypto</h1>
+          {/* <p className="col-10 fs-4">Below is an example form.</p> */}
+          <br />
         </div>
-        <div class="col-md-10 mx-auto col-lg-5">
-          <form class="p-4 p-md-5 border rounded-3 bg-light" data-bitwarden-watching="1">
-
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">Wallet ID</span>
-              <input placeholder={PUBLICKEY} disabled class="form-control" />
+        <div className="container col-md-6 mx-auto col-lg-5 mt-4">
+          <form className="p-4 p-md-5 border rounded-3 bg-light" data-bitwarden-watching="1">
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="basic-addon1">Wallet ID</span>
+              <input placeholder={PUBLICKEY} disabled className="form-control" />
             </div>
-            <div class="form-floating mb-3">
-              <input type="number" class="form-control" id="floatingInput" />
+            <div className="form-floating mb-3">
+              <input type="number" className="form-control" id="floatingInput" />
               <label for="floatingInput">Amount</label>
             </div>
-            <div class="form-floating mb-3">
-              <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+            <div className="form-floating mb-3">
+              <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
               <label for="floatingPassword">PIN</label>
             </div>
-
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Send</button>
-            <hr class="my-4" />
-            <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+            <div className="mb-3">
+              <label for="disabledSelect" className="form-label">Payment Type</label>
+              <select id="disabledSelect" className="form-select">
+                <option>Cash</option>
+                <option>Card</option>
+                <option>Crypto</option>
+              </select>
+            </div>
+            <button className="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+            <hr className="my-4" />
+            <small className="text-muted">By clicking Submit, you agree to the terms of use.</small>
           </form>
         </div>
       </div>

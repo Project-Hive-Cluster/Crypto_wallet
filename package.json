@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "card-number-generator": "^0.0.2",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "materialize-css": "^1.0.0-rc.2",
@@ -17,7 +18,8 @@
     "react-animated-web": "^1.0.34",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.5",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "unique-names-generator": "^4.7.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",
