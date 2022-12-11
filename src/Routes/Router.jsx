@@ -10,6 +10,7 @@ import Deposit from '../Views/Transfer/Deposit'
 import Error404 from '../Views/Navagation/Error'
 import Login from '../Views/Components/Login/Login'
 import Report from '../Views/Transfer/Report'
+import AddWallet from '../Views/Admin/AddWallet'
 
 export default function DefaultRouter() {
   // const authInfo = useContext(AuthContext)
@@ -34,6 +35,7 @@ export default function DefaultRouter() {
             <Route path="/Transfer" element={<FundTransfer />} />
             <Route path="/AddCrypto" element={<Deposit />} />
             <Route path="/Report" element={<Report />} />
+            <Route path="/AddWallet" element={<AddWallet />} />
             <Route path="/*" element={<Error404 />} />
           </Route>
         }

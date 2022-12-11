@@ -6,7 +6,7 @@ import CryptoCard from '../Components/CryptoCard'
 export default function SideNav() {
   return (
     <div style={{ padding: '1rem' }}>
-      <div className="container">
+      <div style={{ transform: 'scaleX(0.8) scaleY(0.8)', marginLeft: '-60px' }}>
         <CryptoCard />
       </div>
       <br />
@@ -49,7 +49,7 @@ export default function SideNav() {
         </div>
 
       </div>
-    </div>
+    </div >
   )
 }
 
@@ -87,7 +87,7 @@ export const TransferNav = () => {
 }
 export const AdminrNav = () => {
   return (<nav className="nav flex-column">
-    <Link className="nav-link" to={'/AddCrypto'}>Add Wallet</Link>
+    <Link className="nav-link" to={'/AddWallet'}>Add Wallet</Link>
     <Link className="nav-link" to={'/Transfer'}>View Block</Link>
 
   </nav>)
