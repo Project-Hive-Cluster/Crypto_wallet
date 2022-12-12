@@ -88,7 +88,7 @@ export const TransferNav = () => {
 export const AdminrNav = () => {
   return (<nav className="nav flex-column">
     <Link className="nav-link" to={'/AddWallet'}>Add Wallet</Link>
-    <Link className="nav-link" to={'/Transfer'}>View Block</Link>
+    <Link className="nav-link" to={'/Block'}>View Block</Link>
 
   </nav>)
 }

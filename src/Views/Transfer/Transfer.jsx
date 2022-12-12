@@ -10,7 +10,7 @@ export default function FundTransfer({ PUBLICKEY = "hntry5by7nu56uw4enue46nu46eu
     <div className="w-100 col-xl-10 col-xxl-8 px-4 py-5" style={{ backgroundColor: '#eeeeee' }}>
       <div className="row align-items-center g-lg-5 py-5">
         <div className="col-lg-7 text-center text-lg-start">
-          <h1 className="display-4 fw-bold lh-1 mb-3 m-3" style={{ color: '#09b372' }}>Crypto Transfer</h1>
+          <h1 className="display-4  lh-1 mb-3 m-3 BlackOpsOne" style={{ color: '#09b372' }}>Crypto Transfer</h1>
           {/* <p className="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p> */}
           <img src={image} alt="" />
         </div>

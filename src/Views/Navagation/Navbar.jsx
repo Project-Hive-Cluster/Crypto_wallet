@@ -5,7 +5,7 @@ import bgimg from "../../Images/stacked-steps-haikei.svg"
 export default function Navbar() {
   return (
 
-    <nav className="navbar navbar-expand-lg navbar-light bg-light"
+    <nav className="d-print-none navbar navbar-expand-lg navbar-light bg-light"
       style={{
         width: '100vw',
         backgroundColor: 'black',

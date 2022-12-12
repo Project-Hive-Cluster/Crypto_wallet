@@ -15,7 +15,8 @@ export default function Deposit({ PUBLICKEY = "hntry5by7nu56uw4enue46nu46eu" }) 
           className="container col-md-6 text-center text-lg-start m-2
        d-md-block d-lg-block d-xl-block d-none 
         ">
-          <h1 className="display-4 fw-bold lh-1 mb-3">Add Crypto</h1>
+          <br />
+          <h1 className="display-4 fw-bold lh-1 mb-3 BlackOpsOne" style={{ color: '#311ba4' }}>Add Crypto</h1>
           {/* <p className="col-10 fs-4">Below is an example form.</p> */}
           <br />
         </div>
