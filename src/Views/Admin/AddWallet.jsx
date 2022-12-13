@@ -39,7 +39,7 @@ export function FormInput() {
   const handleSubmit = () => {
     const options = {
       method: 'POST',
-      url: 'http://127.0.0.1:8080/wallet/open',
+      url: 'http://127.0.0.1:2000/wallet/open',
       data: {
         email, first,
         last, contact

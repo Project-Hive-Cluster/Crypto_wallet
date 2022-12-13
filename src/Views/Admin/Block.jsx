@@ -1,6 +1,4 @@
-import { useEffect } from 'react'
-import logo from '../../Images/snowflake-snow-svgrepo-com.svg'
-import { AxiosProvider, Request, Get, Delete, Head, Post, Put, Patch, withAxios } from 'react-axios'
+import { Get } from 'react-axios'
 import moment from 'moment'
 
 
@@ -10,7 +8,7 @@ export default function Block() {
 
     return (
         <div>
-            <Get url="http://127.0.0.1:8080/spine/get" params={{ id: "12345" }}>
+            <Get url="http://127.0.0.1:2000/spine/get" params={{ id: "12345" }}>
                 {(error, response, isLoading, makeRequest) => {
                     if (error) {
                         return (<div>Something bad happened: {error.message} <button onClick={() => makeRequest({ params: { reload: true } })}>Retry</button></div>)
