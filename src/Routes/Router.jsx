@@ -12,6 +12,7 @@ import Login from '../Views/Components/Login/Login'
 import Report from '../Views/Transfer/Report'
 import AddWallet from '../Views/Admin/AddWallet'
 import Block from '../Views/Admin/Block'
+import Admin from '../Views/Admin/Admin'
 
 export default function DefaultRouter() {
   // const authInfo = useContext(AuthContext)
@@ -38,6 +39,7 @@ export default function DefaultRouter() {
             <Route path="/Report" element={<Report />} />
             <Route path="/AddWallet" element={<AddWallet />} />
             <Route path="/Block" element={<Block />} />
+            <Route path="/Admin" element={<Admin />} />
             <Route path="/*" element={<Error404 />} />
           </Route>
         }

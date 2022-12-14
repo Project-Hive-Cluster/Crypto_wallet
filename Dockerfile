@@ -5,6 +5,7 @@ WORKDIR /app
 
 # COPY package.json package.json
 # RUN npm install 
+CMD ["npm","install","vite"]
 COPY . .
 CMD ["npm","run","dev"]
 

@@ -89,6 +89,7 @@ export const AdminrNav = () => {
   return (<nav className="nav flex-column">
     <Link className="nav-link" to={'/AddWallet'}>Add Wallet</Link>
     <Link className="nav-link" to={'/Block'}>View Block</Link>
+    <Link className="nav-link" to={'/Admin'}>Admin</Link>
 
   </nav>)
 }
