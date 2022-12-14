@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Post } from 'react-axios'
 import axios from "axios";
 
 

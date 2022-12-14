@@ -1,5 +1,6 @@
 
 import { useState } from 'react'
+import axios from "axios";
 import image from '../../Images/transfer.gif'
 
 
@@ -7,7 +8,23 @@ import image from '../../Images/transfer.gif'
 export default function Admin() {
   // event.target.value
   const [masterKey, setMasterKey] = useState(true)
+  const [blockInit, setBlockInit] = useState('')
 
+  const handleKeyChange = () => {
+    setMasterKey(!masterKey)
+  }
+
+  const handleBlockInit = () => {
+    const options = {
+      method: 'GET',
+      url: 'http://127.0.0.1:2000/spine/init',
+    };
+    axios.request(options).then(function (response) {
+      setBlockInit(JSON.stringify(response.data));
+    }).catch(function (error) {
+      console.error(error);
+    });
+  }
 
 
   return (
@@ -19,34 +36,39 @@ export default function Admin() {
 
         </div>
         <div className="col-md-12 mx-auto col-lg-8">
-          <form className="p-4 p-md-5 border rounded-3 bg-light" data-bitwarden-watching="1">
-            <p className="col-lg-10 fs-4">Database Status</p>
+          <form className="p-5 p-md-5 border rounded-3 bg-light" data-bitwarden-watching="1">
+            <p className="col-lg-10 fs-4 text-primary py-3">Database Status</p>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">Wallet ID</span>
               <input disabled className="form-control" />
             </div>
 
             <p className="col-lg-10 fs-4 ">Master Key</p>
-            <div class="input-group  mb-3">
-              <span class="input-group-text">
-                <div class="form-check form-switch">
-                  <input class="form-check-input" onClick={setMasterKey(!masterKey)} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-                  <label class="form-check-label" for="flexSwitchCheckDefault">Master Control</label>
+            <div className="input-group  mb-3">
+              <span className="input-group-text">
+                <div className="form-check form-switch">
+                  <input className="form-check-input" onClick={handleKeyChange} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                  <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Master Control</label>
                 </div>
               </span>
-              {/* <input type="text" class="form-control" aria-label="Sizing example input" /> */}
-              <button class="btn btn-outline-secondary" {...masterKey ? 'disabled' : ""} type="button">Initial Block Chain</button>
+              {/* <input type="text" className="form-control" aria-label="Sizing example input" /> */}
+              {masterKey ?
+                <button className="btn btn-outline-secondary" disabled type="button" >Initial Block Chain</button> :
+                <button className="btn btn-outline-danger" type="button" onClick={handleBlockInit}>Initial Block Chain</button>}
+            </div>
+            {blockInit ?
+              <div style={{ backgroundColor: '#ADD8E6' }} className="rounded  p-5">
+                <p className="container text-break">{blockInit}</p>
+              </div> : <></>}
+            <div className="text-bg-danger rounded  p-5">
+              <small className="">By enabling Master key you might damage the block.</small>
             </div>
 
 
-            <div className="form-floating mb-3">
-              <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
-              <label htmlFor="floatingPassword">PIN</label>
-            </div>
 
-            <button className="w-100 btn btn-lg btn-primary" type="submit">Send</button>
-            <hr className="my-4" />
-            <small className="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+
+            {/* <hr className="my-4" /> */}
+
           </form>
         </div>
       </div>
