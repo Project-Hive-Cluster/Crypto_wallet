@@ -1,43 +1,68 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import converter from "number-to-words"
+import axios from "axios"
+const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
+
 
 export default function SideNav() {
-  const [balance, setBalance] = useState("*********")
+  const [balance, setBalance] = useState("***")
   // const [showBalance, setShowBalance] = useState(******)
   const [btn, setBtn] = useState(false)
 
-  useEffect(() => {
-    setTimeout(function () {
-      setBalance("*********")
-    }, 1000)
-  }, [])
-
   const handelShowBalance = async () => {
-    setBalance(1000.5)
-    // await setTimeout(setBalance("*********"), 3000)
+    await handleBalance({ wallet: "0000000000000000" })
+    setBtn(true)
+    setTimeout(() => {
+      setBtn(false)
+      setBalance("***")
+    }, 7000)
+
+  }
+
+  const handleBalance = ({ wallet }) => {
+    const options = {
+      method: "POST",
+      url: api + "/balance",
+      data: {
+        waletid: wallet
+      },
+    }
+    axios
+      .request(options)
+      .then((response) => {
+        setBalance(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
   }
 
   return (
     <div style={{ padding: "1rem" }}>
-      <div class="card">
-        <div class="card-header">
-          <i class="bi bi-coin mx-1"></i>
+      <div className="card">
+        <div className="card-header">
+          <i className="bi bi-coin mx-1"></i>
           Balance
         </div>
-        <div class="card-body">
-          <h5 class="card-title p-2 text-center">{balance} Coin</h5>
-          {/* <p>{converter.toWords(balance)} coin</p> */}
-          <div class="form-check form-switch">
+        <div className="card-body">
+          {typeof balance === "number" ?
+            <><h5 className="card-title fst-italic p-2 text-center">{balance}Coin</h5>
+              <p>{converter.toWords(balance)} coin</p></>
+            : <></>}
+
+          <div className="form-check form-switch">
             <input
-              class="form-check-input"
+              className="form-check-input"
               // checked
               type="checkbox"
+              checked={btn}
               role="switch"
               id="flexSwitchCheckDefault"
-              onClick={handelShowBalance}
+              onChange={handelShowBalance}
             />
-            <label class="form-check-label" for="flexSwitchCheckDefault">
+            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
               Show Balance
             </label>
           </div>
@@ -80,7 +105,7 @@ export default function SideNav() {
               aria-expanded="false"
               aria-controls="collapseTwo"
             >
-              Transaction
+              Crypto
             </button>
           </h2>
           <div
@@ -90,7 +115,7 @@ export default function SideNav() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body">
-              <TransferNav />
+              <Crypto />
             </div>
           </div>
         </div>
@@ -151,11 +176,14 @@ export const RegistationNav = () => {
   )
 }
 
-export const TransferNav = () => {
+export const Crypto = () => {
   return (
     <nav className="nav flex-column">
       <Link className="nav-link" to={"/AddCrypto"}>
         Add Crypto
+      </Link>
+      <Link className="nav-link" to={"/SentCrypto"}>
+        Sent Crypto
       </Link>
       <Link className="nav-link" to={"/Transfer"}>
         Transfer

@@ -3,13 +3,14 @@ import {
   Routes, Route
 } from 'react-router-dom'
 
-import FundTransfer from '../Views/Transfer/Transfer'
+import FundTransfer from '../Views/Admin/Transfer'
+import SendCrypto from '../Views/Crypto/SentCrypto'
 import Landing from '../Views/Container'
 import Home from '../Views/Home/Home'
-import Deposit from '../Views/Transfer/Deposit'
+import AddCrypto from '../Views/Crypto/AddCrypto'
 import Error404 from '../Views/Navagation/Error'
 import Login from '../Views/Components/Login/Login'
-import Report from '../Views/Transfer/Report'
+import Report from '../Views/Crypto/Report'
 import AddWallet from '../Views/Admin/AddWallet'
 import Block from '../Views/Admin/Block'
 import Admin from '../Views/Admin/Admin'
@@ -34,8 +35,9 @@ export default function DefaultRouter() {
           :
           <Route path="/" element={<Landing />}>
             <Route path="/" element={<Home />} />
+            <Route path="/SentCrypto" element={<SendCrypto />} />
             <Route path="/Transfer" element={<FundTransfer />} />
-            <Route path="/AddCrypto" element={<Deposit />} />
+            <Route path="/AddCrypto" element={<AddCrypto />} />
             <Route path="/Report" element={<Report />} />
             <Route path="/AddWallet" element={<AddWallet />} />
             <Route path="/Block" element={<Block />} />

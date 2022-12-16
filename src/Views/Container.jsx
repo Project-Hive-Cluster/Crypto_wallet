@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from './Navagation/Navbar'
-import FundTransfer from './Transfer/Transfer'
 import SideNav from './Navagation/SideNav'
 import logo from "../Images/react.svg"
 

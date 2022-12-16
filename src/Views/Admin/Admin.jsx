@@ -1,7 +1,10 @@
 
+
 import { useState } from 'react'
 import axios from "axios";
 import image from '../../Images/transfer.gif'
+const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
+
 
 
 
@@ -17,8 +20,9 @@ export default function Admin() {
   const handleBlockInit = () => {
     const options = {
       method: 'GET',
-      url: 'http://127.0.0.1:2000/spine/init',
+      url: api + '/spine/init',
     };
+    
     axios.request(options).then(function (response) {
       setBlockInit(JSON.stringify(response.data));
     }).catch(function (error) {

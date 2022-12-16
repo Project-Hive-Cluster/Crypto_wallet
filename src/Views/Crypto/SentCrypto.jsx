@@ -3,19 +3,21 @@ import image from '../../Images/transfer.gif'
 
 
 
-export default function FundTransfer({ PUBLICKEY = "hntry5by7nu56uw4enue46nu46eu" }) {
+export default function SendCrypto({ PUBLICKEY = "hntry5by7nu56uw4enue46nu46eu" }) {
 
 
   return (
     <div className="w-100 col-xl-10 col-xxl-8 px-4 py-5" style={{ backgroundColor: '#eeeeee' }}>
       <div className="row align-items-center g-lg-5 py-5">
         <div className="col-lg-7 text-center text-lg-start">
-          <h1 className="display-4  lh-1 mb-3 m-3 BlackOpsOne" style={{ color: '#09b372' }}>Crypto Transfer</h1>
-          {/* <p className="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p> */}
-          <img src={image} alt="" />
+          <div className="d-none d-md-block d-xxl-block d-xl-block d-lg-block">
+            <h1 className="display-4  lh-1 mb-3 m-3 BlackOpsOne" style={{ color: '#09b372' }}>Pay With Crypto</h1>
+            {/* <p className="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p> */}
+            <img src={image} alt="" />
+          </div>
         </div>
         <div className="col-md-8 mx-auto col-lg-4">
-          <form className="p-4 p-md-5 border rounded-3 bg-light" data-bitwarden-watching="1">
+          <div className="p-4 p-md-5 border rounded-3 bg-light">
             <p className="col-lg-10 fs-4">Sender</p>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">Wallet ID</span>
@@ -44,7 +46,7 @@ export default function FundTransfer({ PUBLICKEY = "hntry5by7nu56uw4enue46nu46eu
             <button className="w-100 btn btn-lg btn-primary" type="submit">Send</button>
             <hr className="my-4" />
             <small className="text-muted">By clicking Sign up, you agree to the terms of use.</small>
-          </form>
+          </div>
         </div>
       </div>
     </div>

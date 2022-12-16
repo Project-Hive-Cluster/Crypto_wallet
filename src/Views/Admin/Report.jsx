@@ -25,9 +25,9 @@ export default function Report() {
 export function SideBar() {
     return (
         <div className='m-5'>
-            <label for="inputPassword5" className="form-label">From</label>
+            <label htmlFor="inputPassword5" className="form-label">From</label>
             <input type="date" id="inputPassword5" className="form-control" />
-            <label for="inputPassword5" className="form-label">To</label>
+            <label htmlFor="inputPassword5" className="form-label">To</label>
             <input type="date" id="inputPassword5" className="form-control" />
             <br />
             <button type="button" className="btn btn-primary w-100">Search</button>

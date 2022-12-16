@@ -1,53 +1,51 @@
-import { useState } from "react"
-import axios from "axios"
-import CardList from "../Components/CardAnimitation"
+import { useState } from "react";
+import axios from "axios";
+const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`;
+import CardList from "../Components/CardAnimitation";
 
-export default function Deposit({ WALLETID = "0100900000000001" }) {
-  const [_amount, setAmount] = useState(0)
-  const [_loading, _setLoading] = useState(false)
-  const [pin, setPin] = useState()
-  const [output, setOutput] = useState(false)
-  const [type, setType] = useState("Cash")
+export default function AddCrypto({ WALLETID = "0100900000000005" }) {
+  const [_amount, setAmount] = useState(0);
+  const [_loading, _setLoading] = useState(false);
+  const [pin, setPin] = useState();
+  const [output, setOutput] = useState(false);
+  const [type, setType] = useState("Cash");
 
   const handleSubmit = () => {
-    _setLoading(true)
+    _setLoading(true);
     const options = {
       method: "POST",
-      url: "http://127.0.0.1:2000/transfer",
+      url: api + "/transfer",
       data: {
-        waletid: "000000000000000",
+        waletid: "0000000000000000",
         data: `Crypto Loaded in ${type}`,
         to: WALLETID,
         amount: _amount,
       },
-    }
+    };
     axios
       .request(options)
       .then((response) => {
-        console.log(response.data)
-        setOutput(response.data)
+        setOutput(response.data);
       })
       .catch((error) => {
-        console.error(error)
+        console.error(error);
       })
-      .finally(() => _setLoading(false))
-  }
+      .finally(() => _setLoading(false));
+  };
 
   return (
-    <div className="container col-xl-10 col-xxl-8  py-5">
-      <div className="row align-items-center g-lg-5 ">
-        <CardList />
-        <div
-          className="container col-md-6 text-center text-lg-start m-2
-       d-md-block d-lg-block d-xl-block d-none 
-        "
-        >
+    <div className="container  py-5">
+      <div className="row align-items-center g-lg-5">
+        <div className="d-none d-md-block d-xxl-block d-xl-block d-lg-block">
+          <CardList />
+        </div>
+        <div className="container col-md-6 text-center text-lg-start m-2 d-block">
           <br />
           <h1
             className="display-4 fw-bold lh-1 mb-3 BlackOpsOne"
             style={{ color: "#311ba4" }}
           >
-            Add Crypto
+            Get more Crypto
           </h1>
           {/* <p className="col-10 fs-4">Below is an example form.</p> */}
           <br />
@@ -119,12 +117,17 @@ export default function Deposit({ WALLETID = "0100900000000001" }) {
               )}
             </button>
 
-            {output.massage === "Insufficient Balance" ? (
+            {output === "Insufficient Balance" ? (
               <>
                 <hr className="my-4" />
                 <div
-                  bg-danger
-                  className="container text-center rounded bg-danger p-5"
+                  className="rounded
+                p-5
+                d-flex
+                align-items-center justify-content-center
+                container
+                text-light
+                bg-danger"
                 >
                   <p className="text-break">Insufficient Balance</p>
                 </div>
@@ -135,13 +138,14 @@ export default function Deposit({ WALLETID = "0100900000000001" }) {
               <>
                 <hr className="my-4" />
                 <div
-                  style={{ backgroundColor: "#ADD8E6" }}
-                  className="rounded  p-5"
+                  className="
+                rounded
+                p-5
+                d-flex
+                align-items-center justify-content-center
+                container"
                 >
-                  <p className="container text-break">
-                    {" "}
-                    {JSON.stringify(output)}
-                  </p>
+                  <p className="text-break">{JSON.stringify(output)}</p>
                 </div>
               </>
             )}
@@ -153,5 +157,5 @@ export default function Deposit({ WALLETID = "0100900000000001" }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

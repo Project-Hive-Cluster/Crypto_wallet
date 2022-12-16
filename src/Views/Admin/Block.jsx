@@ -1,117 +1,126 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import moment from "moment"
-import uuid from "react-uuid"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
+const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
+import image_block from "../../Images/blockchainhexa.gif"
+
 
 export default function Block() {
+  const [errMsg, setErrMsg] = useState(null)
   const [table, setTable] = useState([])
 
   useEffect(() => {
     const options = {
       method: "GET",
-      url: "http://127.0.0.1:2000/spine/get",
+      url: api + "/spine/get",
     }
-    axios
-      .request(options)
+    axios.request(options)
       .then(function (response) {
         setTable(response.data)
+        setErrMsg(null)
       })
       .catch(function (error) {
-        return (
-          <div>
-            Something bad happened: {error.message}{" "}
-            <button onClick={() => makeRequest({ params: { reload: true } })}>
-              Retry
-            </button>
-          </div>
-        )
+        setErrMsg(JSON.stringify(error))
       })
   }, [])
+
+
+
   return (
     <div className="col-12 p-5">
-      <h2>Block Chain</h2>
+      <div className="d-flex align-items-center flex-row" >
+        <img src={image_block} className="col-1" />
+        <h1 className="fs-1">Block Chain</h1>
+      </div>
       <br />
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Walletid</th>
-            <th scope="col">Titel</th>
-            <th scope="col">Timestamp</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Sign</th>
-            <th scope="col">Body</th>
-          </tr>
-        </thead>
-        <tbody>
-          {table.length < 1 ? (
-            <tr key="111">
-              <th scope="row">
-                <Skeleton />
-              </th>
-              <td>
-                <Skeleton />
-              </td>
-              <td className="text-wrap text-break">
-                <Skeleton />
-              </td>
-              <td>
-                <Skeleton />
-              </td>
-              <td>
-                <Skeleton />
-              </td>
-              <td className="text-wrap text-break">
-                <Skeleton />
-              </td>
-              <td className="text-wrap text-break">
-                <Skeleton />
-              </td>
+      {errMsg ?
+        <div style={{ backgroundColor: 'tomato' }} className="rounded  p-5">
+          <h1>Error</h1>
+          <h3>Fail to load content</h3>
+          <p className="container text-break"><b>Error:</b> {errMsg}</p>
+        </div> :
+
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Walletid</th>
+              <th scope="col">Titel</th>
+              <th scope="col">Timestamp</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Sign</th>
+              <th scope="col">Body</th>
             </tr>
-          ) : (
-            table.map(
-              ({
-                id,
-                walletid,
-                walletkey,
-                timestamp,
-                amount,
-                signatue,
-                body,
-              }) => {
-                return (
-                  <tr key={walletid}>
-                    <td>
-                      <b>{id}</b>
-                    </td>
-                    <td>
-                      {walletid.replace(
-                        /^(.{4})(.{4})(.{4})(.*)$/,
-                        "$1-$2-$3-$4"
-                      )}
-                    </td>
-                    <td className="text-wrap text-break">{walletkey}</td>
-                    <td>{moment(timestamp.replace(/"/g, "")).format("lll")}</td>
-                    <td>{amount}</td>
-                    <td className="text-wrap text-break">
-                      {signatue ? (
-                        <i className="bi bi-check2-circle"></i>
-                      ) : (
-                        <i className="bi bi-slash-circle"></i>
-                      )}
-                    </td>
-                    <td className="text-wrap text-break">
-                      {body.replace(/"/g, "")}
-                    </td>
-                  </tr>
-                )
-              }
-            )
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {table.length < 1 ? (
+              <tr key="111">
+                <th scope="row">
+                  <Skeleton />
+                </th>
+                <td>
+                  <Skeleton />
+                </td>
+                <td className="text-wrap text-break">
+                  <Skeleton />
+                </td>
+                <td>
+                  <Skeleton />
+                </td>
+                <td>
+                  <Skeleton />
+                </td>
+                <td className="text-wrap text-break">
+                  <Skeleton />
+                </td>
+                <td className="text-wrap text-break">
+                  <Skeleton />
+                </td>
+              </tr>
+            ) : (
+              table.map(
+                ({
+                  id,
+                  walletid,
+                  walletkey,
+                  timestamp,
+                  amount,
+                  signatue,
+                  body,
+                }) => {
+                  return (
+                    <tr key={walletid}>
+                      <td>
+                        <b>{id}</b>
+                      </td>
+                      <td>
+                        {walletid.replace(
+                          /^(.{4})(.{4})(.{4})(.*)$/,
+                          "$1-$2-$3-$4"
+                        )}
+                      </td>
+                      <td className="text-wrap text-break">{walletkey}</td>
+                      <td>{moment(timestamp.replace(/"/g, "")).format("lll")}</td>
+                      <td>{amount}</td>
+                      <td className="text-wrap text-break">
+                        {signatue ? (
+                          <i className="bi bi-check2-circle"></i>
+                        ) : (
+                          <i className="bi bi-slash-circle"></i>
+                        )}
+                      </td>
+                      <td className="text-wrap text-break">
+                        {body.replace(/"/g, "")}
+                      </td>
+                    </tr>
+                  )
+                }
+              )
+            )}
+          </tbody>
+        </table>}
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import bgimg from "../../Images/stacked-steps-haikei.svg"
+const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
 
 export default function Navbar() {
   return (

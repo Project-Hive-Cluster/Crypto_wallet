@@ -1,6 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
-
+const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
 // Components
 import image from "../../Images/addWallet.gif"
 import CryptoCard from "../Components/CryptoCard"
@@ -9,14 +9,17 @@ export default function AddWallet() {
   return (
     <div className="container ">
       <div className="row">
-        <div className="d-print-none col-6 p-2">
-          <br />
-          <h1 className="mb-3 mt-5 BlackOpsOne" style={{ color: "#36467f" }}>
-            Add Wallet
-          </h1>
-          <img src={image} height="70%" />
+        <div className="d-print-none col-lg-6 col-md-4 p-2">
+          <div className="d-none d-md-block d-xxl-block d-xl-block d-lg-block d-md-block">
+            <br />
+            <h1 className="mb-3 mt-5 BlackOpsOne" style={{ color: "#36467f" }}>
+              Add Wallet
+            </h1>
+            <img src={image} height="70%" />
+          </div>
         </div>
-        <div className="col-6">
+
+        <div className="col-lg-6 col-md-8 col-sm-12 bg-white">
           <FormInput />
         </div>
       </div>
@@ -35,7 +38,7 @@ export function FormInput() {
   const handleSubmit = () => {
     const options = {
       method: "POST",
-      url: "http://127.0.0.1:2000/wallet/open",
+      url: api + "/wallet/open",
       data: {
         email,
         first,
