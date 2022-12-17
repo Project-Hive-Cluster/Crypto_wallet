@@ -14,6 +14,9 @@ import Report from '../Views/Crypto/Report'
 import AddWallet from '../Views/Admin/AddWallet'
 import Block from '../Views/Admin/Block'
 import Admin from '../Views/Admin/Admin'
+import RequireAuth from '../Views/RequireAuth'
+
+
 
 export default function DefaultRouter() {
   // const authInfo = useContext(AuthContext)
@@ -23,29 +26,33 @@ export default function DefaultRouter() {
   // useEffect(() => {
   //   updateAuth()
   // }, []);
-  const token = true
+  const ROLES = {
+    'User': 2001,
+    'Admin': 5150
+  }
   return (
 
     <BrowserRouter>
       <Routes>
-        {!token ?
-          <Route path="/" element={<Login />} replace>
-            <Route exact path="*" element={<Error404 />} />
-          </Route>
-          :
-          <Route path="/" element={<Landing />}>
-            <Route path="/" element={<Home />} />
+
+        <Route path="/" element={<Landing />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/logout" element={<Login />} />
+          <Route path="/" element={<RequireAuth allowedRoles={[ROLES.User]} />} replace>
             <Route path="/SentCrypto" element={<SendCrypto />} />
-            <Route path="/Transfer" element={<FundTransfer />} />
             <Route path="/AddCrypto" element={<AddCrypto />} />
             <Route path="/Report" element={<Report />} />
+          </Route>
+          <Route path="/" element={<RequireAuth allowedRoles={[ROLES.Admin]} />} replace>
+            <Route path="/Admin" element={<Admin />} />
             <Route path="/AddWallet" element={<AddWallet />} />
             <Route path="/Block" element={<Block />} />
-            <Route path="/Admin" element={<Admin />} />
+            <Route path="/Transfer" element={<FundTransfer />} />
             <Route path="/*" element={<Error404 />} />
           </Route>
-        }
-        <Route path="/logout" element={<Login />} />
+        </Route>
+
+        <Route path="/unauthorized" element={<Error404 />} />
         <Route path="/*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>

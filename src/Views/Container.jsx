@@ -20,9 +20,6 @@ export default function Landing() {
           <SideNav />
         </div>
       </div>
-
-
-
       <Outlet />
     </main>)
 }

@@ -1,53 +1,15 @@
+import { createContext, useState } from "react";
 
-import { createContext, useReducer } from 'react';
-import jwtDecode from 'jwt-decode';
-import Cookies from 'universal-cookie';
+const AuthContext = createContext({});
 
-export const AuthContext = createContext({})
-const cookies = new Cookies
-const AuthProvider = ({ children }) => {
-
-    const [auth, setAuth] = useReducer((oldState, newState) => newState, {
-        token: undefined,
-        user: null,
-        validitations: false
-    });
-
-    const cookieUpdate = () => {
-        let data = cookies.get('auth')
-        if (data) {
-            const decode_data = jwtDecode(data)
-            const user = decode_data.user
-            setAuth({
-                token: data,
-                user: user,
-                validitations: true
-            });
-        } else {
-            setAuth({
-                token: undefined,
-                user: null,
-                validitations: false
-            })
-        }
-    }
-
-    const updateAuth = () => {
-        cookieUpdate()
-    }
-    const authValid = () => {
-        new Promise(async (resolve) => {
-            await cookieUpdate()
-            resolve(auth.validitations)
-        })
-    }
-
-
+export const AuthProvider = ({ children }) => {
+    const [auth, setAuth] = useState({});
 
     return (
-        <AuthContext.Provider value={{ auth, authValid, updateAuth }} >
+        <AuthContext.Provider value={{ auth, setAuth }}>
             {children}
         </AuthContext.Provider>
-    );
-};
-export default AuthProvider;
+    )
+}
+
+export default AuthContext;
