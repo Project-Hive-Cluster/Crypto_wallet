@@ -4,7 +4,6 @@ import converter from "number-to-words"
 import axios from "axios"
 const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
 
-
 export default function SideNav() {
   const [balance, setBalance] = useState("***")
   // const [showBalance, setShowBalance] = useState(******)
@@ -17,26 +16,26 @@ export default function SideNav() {
       setBtn(false)
       setBalance("***")
     }, 7000)
-
   }
 
   const handleBalance = ({ wallet }) => {
     const options = {
       method: "POST",
-      url: api + "/balance",
+      url: api + "/vartix/balance",
       data: {
-        waletid: wallet
+        walletid: wallet,
       },
     }
     axios
       .request(options)
       .then((response) => {
-        setBalance(response.data)
+        let res_temp = response.data
+        res_temp = res_temp.Balance
+        setBalance(res_temp)
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error)
       })
-
   }
 
   return (
@@ -47,10 +46,16 @@ export default function SideNav() {
           Balance
         </div>
         <div className="card-body">
-          {typeof balance === "number" ?
-            <><h5 className="card-title fst-italic p-2 text-center">{balance}Coin</h5>
-              <p>{converter.toWords(balance)} coin</p></>
-            : <></>}
+          {typeof balance === "number" ? (
+            <>
+              <h5 className="card-title fst-italic p-2 text-center">
+                {balance}Coin
+              </h5>
+              <p>{converter.toWords(balance)} coin</p>
+            </>
+          ) : (
+            <></>
+          )}
 
           <div className="form-check form-switch">
             <input
@@ -62,7 +67,10 @@ export default function SideNav() {
               id="flexSwitchCheckDefault"
               onChange={handelShowBalance}
             />
-            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+            <label
+              className="form-check-label"
+              htmlFor="flexSwitchCheckDefault"
+            >
               Show Balance
             </label>
           </div>

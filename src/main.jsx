@@ -7,8 +7,8 @@ import "./Styles/index.css"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
-      <DefaultRouter />
-    </AuthProvider>
+    {/* <AuthProvider.Consumer> */}
+    <DefaultRouter />
+    {/* </AuthProvider.Consumer> */}
   </React.StrictMode>
 )

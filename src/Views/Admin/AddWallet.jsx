@@ -30,20 +30,27 @@ export default function AddWallet() {
 export function FormInput() {
   const [email, setEmail] = useState()
   const [_loading, _setLoading] = useState(false)
-  const [first, setFirst] = useState()
-  const [last, setLast] = useState()
+  const [firstname, setFirst] = useState()
+  const [lastname, setLast] = useState()
+  const [password, setPassword] = useState()
+  const [repassword, setRePassword] = useState()
   const [contact, setContact] = useState()
   const [output, setOutput] = useState(false)
 
   const handleSubmit = () => {
+    if (password != repassword) {
+      alert("Passwords do not match")
+    }
+
     const options = {
       method: "POST",
-      url: api + "/wallet/open",
+      url: api + "/blockchain/create",
       data: {
         email,
-        first,
-        last,
+        firstname,
+        lastname,
         contact,
+        password,
       },
     }
     axios
@@ -105,6 +112,36 @@ export function FormInput() {
               <div className="invalid-feedback">Your username is required.</div>
             </div>
           </div>
+          <div className="col-12">
+            <label htmlFor="username" className="form-label">
+              Password
+            </label>
+            <div className="input-group">
+              <span className="input-group-text">#</span>
+              <input
+                type="email"
+                className="form-control"
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="example@domain.com"
+              />
+              <div className="invalid-feedback">Your username is required.</div>
+            </div>
+          </div>
+          <div className="col-12">
+            <label htmlFor="username" className="form-label">
+              Confirm Password
+            </label>
+            <div className="input-group">
+              <span className="input-group-text">#</span>
+              <input
+                type="email"
+                className="form-control"
+                onChange={(event) => setRePassword(event.target.value)}
+                placeholder="example@domain.com"
+              />
+              <div className="invalid-feedback">Your username is required.</div>
+            </div>
+          </div>
 
           <div className="col-12">
             <label htmlFor="address" className="form-label">
@@ -157,8 +194,8 @@ export function FormInput() {
               >
                 <CryptoCard
                   cardno={output.walletid}
-                  f_name={first}
-                  l_name={last}
+                  f_name={firstname}
+                  l_name={lastname}
                 />
               </div>
             </div>
@@ -167,13 +204,13 @@ export function FormInput() {
               <dl className="row">
                 <>
                   <dt className="col-sm-3">Username</dt>
-                  <dd className="col-sm-9">: {output.username}</dd>
+                  <dd className="col-sm-9">: {email}</dd>
                   <dt className="col-sm-3">Password</dt>
-                  <dd className="col-sm-9">: {output.password}</dd>
+                  <dd className="col-sm-9">: {password}</dd>
                   <dt className="col-sm-3">Wallet No</dt>
                   <dd className="col-sm-9">: {output.walletid}</dd>
                   <dt className="col-sm-3">Security key</dt>
-                  <dd className="col-sm-8">: {output.authokey}</dd>
+                  <dd className="col-sm-8">: {output.id}</dd>
                 </>
               </dl>
             </div>
