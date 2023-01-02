@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useContext, useState } from "react"
 import axios from "axios"
 import moment from "moment"
 import Skeleton from "react-loading-skeleton"
@@ -6,7 +6,11 @@ import "react-loading-skeleton/dist/skeleton.css"
 const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
 import logo from "../../Images/snowflake-snow-svgrepo-com.svg"
 
+// Context
+import { AuthProvider } from "../../Apps/Context/AuthContext"
+
 export default function Report() {
+  // walletid, setWalletid
   const walletid = "1778500000000032"
   const [fromDate, setFromDate] = useState()
   const [toDate, setToDate] = useState()
