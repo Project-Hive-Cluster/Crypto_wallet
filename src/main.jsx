@@ -11,9 +11,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <CookiesProvider>
       <WalletProvider>
-        {/* <AuthProvider> */}
-        <DefaultRouter />
-        {/* </AuthProvider> */}
+        <AuthProvider>
+          <DefaultRouter />
+        </AuthProvider>
       </WalletProvider>
     </CookiesProvider>
   </React.StrictMode>

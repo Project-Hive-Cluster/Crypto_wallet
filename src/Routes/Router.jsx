@@ -18,48 +18,32 @@ import RequireAuth from "../Views/RequireAuth"
 import AuthContext from "../Apps/Context/AuthContext"
 
 export default function DefaultRouter() {
-  const [access, setAccess] = useState()
-  const [walletid, setWalletid] = useState()
-  const ROLES = {
-    User: 2001,
-    Admin: 5150,
-  }
+
   return (
     <BrowserRouter>
       <Routes>
-        {access ? (
-          <Route
-            path="/"
-            wallet={{ walletid, setWalletid }}
-            element={
-              <RequireAuth setAccess={setAccess} allowedRoles={[ROLES.User]} />
-            }
-            replace
-          >
-            <Route path="/" element={<Landing />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/SentCrypto" element={<SendCrypto />} />
-              <Route path="/AddCrypto" element={<AddCrypto />} />
-              <Route path="/Report" element={<Report />} />
-              {/* </Route> */}
-              {/* <Route
-            path="/"
-            element={<RequireAuth allowedRoles={[ROLES.Admin]} />}
-            replace
-          > */}
-              <Route path="/Admin" element={<Admin />} />
-              <Route path="/AddWallet" element={<AddWallet />} />
-              <Route path="/Block" element={<Block />} />
-              <Route path="/Transfer" element={<FundTransfer />} />
-              <Route path="/*" element={<Error404 />} />
-            </Route>
-            <Route path="/login" element={<Login setAccess={setAccess} />} />
+
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<Landing />}>
+          <Route path="/" element={<RequireAuth />} replace >
+            <Route path="/" element={<Home />} />
+            <Route path="/SentCrypto" element={<SendCrypto />} />
+            <Route path="/AddCrypto" element={<AddCrypto />} />
+            <Route path="/Report" element={<Report />} />
+            <Route path="/Admin" element={<Admin />} />
+            <Route path="/AddWallet" element={<AddWallet />} />
+            <Route path="/Block" element={<Block />} />
+            <Route path="/Transfer" element={<FundTransfer />} />
+            <Route path="/*" element={<Error404 />} />
           </Route>
-        ) : (
-          <Route path="/" element={<Login setAccess={setAccess} />} />
-        )}
+
+
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<AddWallet />} />
         <Route path="/unauthorized" element={<Error404 />} />
         <Route path="/*" element={<Error404 />} />
+
       </Routes>
     </BrowserRouter>
   )
