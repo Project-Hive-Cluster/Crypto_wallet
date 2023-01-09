@@ -1,45 +1,47 @@
-import { useState } from "react";
-import axios from "axios";
-const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`;
-import CardList from "../Components/CardAnimitation";
+import { useState } from "react"
+import axios from "axios"
+const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
+import CardList from "../Components/CardAnimitation"
+import useAuth from "../../Apps/Hook/useAuth"
 
-export default function AddCrypto({ WALLETID = "0100900000000005" }) {
-  const [_amount, setAmount] = useState(0);
-  const [_loading, _setLoading] = useState(false);
-  const [pin, setPin] = useState();
-  const [output, setOutput] = useState(false);
-  const [type, setType] = useState("Cash");
+export default function AddCrypto() {
+  const { auth } = useAuth()
+  const WALLETID = auth.walletid
+  const [_amount, setAmount] = useState(0)
+  const [_loading, _setLoading] = useState(false)
+  const [pin, setPin] = useState()
+  const [output, setOutput] = useState(false)
+  const [type, setType] = useState("Cash")
 
   const handleSubmit = () => {
-    _setLoading(true);
+    _setLoading(true)
     const options = {
       method: "POST",
-      url: api + "/transfer",
+      url: api + "/vartix/load",
       data: {
-        waletid: "0000000000000000",
-        data: `Crypto Loaded in ${type}`,
-        to: WALLETID,
+        body: `Crypto Loaded in ${type}`,
+        walletid: WALLETID,
         amount: _amount,
       },
-    };
+    }
     axios
       .request(options)
       .then((response) => {
-        setOutput(response.data);
+        setOutput(response.data)
       })
       .catch((error) => {
-        console.error(error);
+        console.error(error)
       })
-      .finally(() => _setLoading(false));
-  };
+      .finally(() => _setLoading(false))
+  }
 
   return (
     <div className="container  py-5">
       <div className="row align-items-center g-lg-5">
-        <div className="d-none d-md-block d-xxl-block d-xl-block d-lg-block">
+        <div className="d-none d-xxl-block d-xl-block d-lg-block">
           <CardList />
         </div>
-        <div className="container col-md-6 text-center text-lg-start m-2 d-block">
+        <div className="container col-md-6 text-center text-lg-start m-2 d-none d-xxl-block d-xl-block d-lg-block">
           <br />
           <h1
             className="display-4 fw-bold lh-1 mb-3 BlackOpsOne"
@@ -47,10 +49,13 @@ export default function AddCrypto({ WALLETID = "0100900000000005" }) {
           >
             Get more Crypto
           </h1>
-          {/* <p className="col-10 fs-4">Below is an example form.</p> */}
           <br />
         </div>
-        <div className="container col-md-6 mx-auto col-lg-5 mt-4">
+
+        <div
+          className="container col-md-6 mx-auto col-lg-5 mt-4"
+          style={{ zIndex: 99 }}
+        >
           <div
             className="p-4 p-md-5 border rounded-3 bg-light"
             data-bitwarden-watching="1"
@@ -157,5 +162,5 @@ export default function AddCrypto({ WALLETID = "0100900000000005" }) {
         </div>
       </div>
     </div>
-  );
+  )
 }

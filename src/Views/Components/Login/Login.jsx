@@ -1,9 +1,8 @@
 import { useState, useRef } from "react"
 import axios from "axios"
 // import { useCookies } from "react-cookie"
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from "react-router-dom"
 import jwt_decode from "jwt-decode"
-
 
 // components
 import "./login.css"
@@ -13,18 +12,16 @@ import useAuth from "../../../Apps/Hook/useAuth"
 // Variable
 const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
 
-
 export default function Login(props) {
   // const [cookies, setCookie] = useCookies(["auth"])
   const [user, setUser] = useState()
   const [pwd, setPwd] = useState()
   const [errMsg, setErrMsg] = useState("")
-  const { setAuth } = useAuth();
+  const { setAuth } = useAuth()
 
-
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/"
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -45,7 +42,6 @@ export default function Login(props) {
           // setCookie("refrash", response.data.refreshToken, { path: "/" })
           let decoded = undefined
 
-
           try {
             decoded = jwt_decode(response.data.token)
           } catch (e) {
@@ -53,11 +49,11 @@ export default function Login(props) {
           }
           const walletid = decoded.walletid
           const publickey = decoded.key
-          const accessToken = response.data.token;
-          setAuth({ user, pwd, accessToken, walletid, publickey });
+          const accessToken = response.data.token
+          setAuth({ user, pwd, accessToken, walletid, publickey })
           setUser("")
           setPwd("")
-          navigate(from, { replace: true });
+          navigate(from, { replace: true })
         })
         .catch(function (error) {
           console.error(error)
@@ -84,9 +80,8 @@ export default function Login(props) {
               <div className="main">
                 <div className="conainer py-0">
                   <div className="row Centered">
-                    <div className="container d-md-block d-lg-block d-xl-block d-none ">
+                    <div className="container  d-lg-block d-xl-block d-none ">
                       <h2 className="text-dark my-5">Crypto Card</h2>
-
                       <CardBgAni />
                     </div>
                   </div>
@@ -101,7 +96,11 @@ export default function Login(props) {
                       <h2 className="p-3 fw-bold mb-0 mt-4 ">
                         Welcome to Crypto Wallet
                       </h2>
-                      <img className="p-2 m-3" src={CryptoPaisha} height="100px" />
+                      <img
+                        className="p-2 m-3"
+                        src={CryptoPaisha}
+                        height="100px"
+                      />
                       <p className="p-0 text-secondary mt-0 mb-0 ">
                         Dear users, Please use your email address htmlFor login.
                       </p>
@@ -147,7 +146,7 @@ export default function Login(props) {
                         <button
                           type="submit"
                           className="btn btn-primary"
-                        //   onClick={handleSubmit}
+                          //   onClick={handleSubmit}
                         >
                           Login
                         </button>

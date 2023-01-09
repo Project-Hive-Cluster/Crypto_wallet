@@ -1,27 +1,69 @@
-import { useEffect, useContext, useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
 import moment from "moment"
+
+// ui
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
+
 const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
 import logo from "../../Images/snowflake-snow-svgrepo-com.svg"
 
 // Context
-import { AuthProvider } from "../../Apps/Context/AuthContext"
+import useAuth from "../../Apps/Hook/useAuth"
 
 export default function Report() {
-  // walletid, setWalletid
-  const walletid = "1778500000000032"
+  let timestamp = new Date().toString()
+  timestamp = moment(timestamp).format("MMM Do YYYY, h:mm a")
+
+  const { auth } = useAuth()
+  const walletid = auth.walletid
   const [fromDate, setFromDate] = useState()
   const [toDate, setToDate] = useState()
-  const [debit, setDebit] = useState()
-  const [credit, setCredit] = useState()
+  const [period, setPeriod] = useState(false)
   const [table, setTable] = useState()
+  const [user, setUser] = useState({
+    firstname: "No First Name",
+    lastname: "No Last Name",
+    contact: "Null",
+  })
+
+  console.log("time", period)
 
   const handelSubmit = () => {
     const options = {
       method: "POST",
-      url: api + "/vartix/look",
+      url: api + `${period ? "/vartix/statment" : "/vartix/statment_period"}`,
+      data: period
+        ? { walletid: walletid, from: fromDate, to: toDate }
+        : { walletid: walletid },
+    }
+    axios
+      .request(options)
+      .then((response) => {
+        let responseData = response.data
+        setTable(responseData.data)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+    // .finally(() => _setLoading(false))
+  }
+
+  /* 
+  * - - - - - - - - - - - - - - - - -
+  *
+             Use Effect
+  *
+  * - - - - - - - - - - - - - - - - -
+  */
+
+  useEffect(() => {
+    const options = {
+      method: "POST",
+      url: api + "/wallet/search",
       data: {
         walletid: walletid,
       },
@@ -29,29 +71,65 @@ export default function Report() {
     axios
       .request(options)
       .then((response) => {
-        console.log(response.data)
-        setTable(response.data)
+        let data = response.data
+        data = data[0]
+        setUser(data)
       })
       .catch((error) => {
         console.error(error)
       })
-      .finally(() => _setLoading(false))
-  }
+  }, [])
 
   return (
     <div className="">
       <div className="row p-2">
         <div className="col-2">
           <div className="p-1 m-3">
-            <label htmlFor="inputPassword5" className="form-label">
-              From
-            </label>
-            <input type="date" id="inputPassword5" className="form-control" />
-            <label htmlFor="inputPassword5" className="form-label">
-              To
-            </label>
-            <input type="date" id="inputPassword5" className="form-control" />
-            <br />
+            {period ? (
+              <>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">
+                    From
+                  </label>
+                  <DatePicker
+                    onChange={setFromDate}
+                    value={fromDate}
+                    maxDate={new Date()}
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="input-group">
+                  <label for="exampleFormControlInput1" class="form-label">
+                    To
+                  </label>
+                  <DatePicker
+                    onChange={setToDate}
+                    value={toDate}
+                    maxDate={new Date()}
+                    class="form-control"
+                  />
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
+
+            <div class="form-check form-switch mt-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+                value={period}
+                onChange={(e) => setPeriod(e.target.checked)}
+              />
+
+              <label class="form-check-label" for="flexSwitchCheckDefault">
+                Period
+              </label>
+            </div>
+
             <button
               type="button"
               className="btn btn-primary w-100"
@@ -82,14 +160,14 @@ export default function Report() {
                 <div className="col-6">
                   <strong>Wallet</strong>:{walletid}
                   <br />
-                  <strong>Titel</strong>:hebghby
+                  <strong>Titel</strong>:{user.firstname} {user.lastname}
                   <br />
-                  <strong>Contact</strong>:hebghby
+                  <strong>Contact</strong>:{user.contact}
                 </div>
                 <div className="col-6">
                   <strong>Period</strong>:hebghby<strong> To </strong>
                   <br />
-                  <strong>TimeStamp</strong>:hebghby
+                  <strong>TimeStamp</strong>:{timestamp}
                   <br />
                 </div>
               </div>
