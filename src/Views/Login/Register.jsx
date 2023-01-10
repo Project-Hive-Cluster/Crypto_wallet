@@ -1,11 +1,12 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import axios from "axios"
 const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
 // Components
 import image from "../../Images/addWallet.gif"
 import CryptoCard from "../Components/CryptoCard"
 
-export default function AddWallet() {
+export default function Register() {
   return (
     <div className="container ">
       <div className="row">
@@ -13,7 +14,7 @@ export default function AddWallet() {
           <div className="d-none d-md-block d-xxl-block d-xl-block d-lg-block d-md-block">
             <br />
             <h1 className="mb-3 mt-5 BlackOpsOne" style={{ color: "#36467f" }}>
-              Add Wallet
+              Register User
             </h1>
             <img src={image} height="70%" />
           </div>
@@ -112,6 +113,7 @@ export function FormInput() {
               <div className="invalid-feedback">Your username is required.</div>
             </div>
           </div>
+
           <div className="col-12">
             <label htmlFor="username" className="form-label">
               Password
@@ -127,6 +129,7 @@ export function FormInput() {
               <div className="invalid-feedback">Your username is required.</div>
             </div>
           </div>
+
           <div className="col-12">
             <label htmlFor="username" className="form-label">
               Confirm Password
@@ -156,6 +159,7 @@ export function FormInput() {
               Please enter your shipping address.
             </div>
           </div>
+
           {/* <div className="col-12">
               <label htmlFor="address" className="form-label">Password</label>
               <input type="text" className="form-control" id="address" />
@@ -181,6 +185,7 @@ export function FormInput() {
               </div>
             </div> */}
         </div>
+
         <br />
 
         {!output ? (
@@ -216,21 +221,30 @@ export function FormInput() {
             </div>
           </div>
         )}
-        <hr className="my-4" />
-        <button
-          className=" d-print-none w-100 btn btn-primary btn-lg"
-          onClick={handleSubmit}
-        >
-          {!_loading ? (
-            <span>Genarate Wallet Key</span>
-          ) : (
-            <span
-              className="spinner-grow spinner-grow-sm"
-              role="status"
-              aria-hidden="true"
-            ></span>
-          )}
-        </button>
+
+        <span className="w-100 col-12">
+          <Link
+            to={"/"}
+            className=" d-print-none mx-5 btn btn-outline-secondary"
+          >
+            <span>Back to Login</span>
+          </Link>
+
+          <button
+            className=" d-print-none  btn btn-primary px-5"
+            onClick={handleSubmit}
+          >
+            {!_loading ? (
+              <span>Register</span>
+            ) : (
+              <span
+                className="spinner-grow spinner-grow-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            )}
+          </button>
+        </span>
       </div>
     </>
   )

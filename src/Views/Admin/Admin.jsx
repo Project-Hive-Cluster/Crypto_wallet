@@ -1,6 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
-import image from "../../Images/transfer.gif"
+import image from "../../Images/fundadd.gif"
 const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
 
 export default function Admin() {

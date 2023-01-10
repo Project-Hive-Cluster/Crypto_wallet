@@ -2,15 +2,17 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import converter from "number-to-words"
 import axios from "axios"
+
 const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
+import useAuth from "../../Apps/Hook/useAuth"
 
 export default function SideNav() {
+  const { auth } = useAuth()
   const [balance, setBalance] = useState("***")
-  // const [showBalance, setShowBalance] = useState(******)
   const [btn, setBtn] = useState(false)
 
   const handelShowBalance = async () => {
-    await handleBalance({ wallet: "0000000000000000" })
+    await handleBalance({ wallet: auth.walletid })
     setBtn(true)
     setTimeout(() => {
       setBtn(false)
@@ -48,10 +50,10 @@ export default function SideNav() {
         <div className="card-body">
           {typeof balance === "number" ? (
             <>
-              <h5 className="card-title fst-italic p-2 text-center">
-                {balance}Coin
-              </h5>
-              <p>{converter.toWords(balance)} coin</p>
+              <h5 className="card-title  p-2 text-center">{balance} Coin</h5>
+              <p className="text-capitalize font-monospace text-muted">
+                {converter.toWords(balance)} coin
+              </p>
             </>
           ) : (
             <></>
@@ -177,7 +179,7 @@ export const RegistationNav = () => {
       <Link className="nav-link" to={"/"}>
         Dashboard
       </Link>
-      <Link className="nav-link" href="#">
+      <Link className="nav-link" to={"/Statment"}>
         Statment
       </Link>
     </nav>
@@ -196,16 +198,17 @@ export const Crypto = () => {
       <Link className="nav-link" to={"/Transfer"}>
         Transfer
       </Link>
-      <Link className="nav-link" to={"/Report"}>
+
+      {/* <Link className="nav-link" to={"/Report"}>
         Report
-      </Link>
+      </Link> */}
     </nav>
   )
 }
 export const AdminrNav = () => {
   return (
     <nav className="nav flex-column">
-      <Link className="nav-link" to={"/AddWallet"}>
+      <Link className="nav-link" to={"/register"}>
         Add Wallet
       </Link>
       <Link className="nav-link" to={"/Block"}>

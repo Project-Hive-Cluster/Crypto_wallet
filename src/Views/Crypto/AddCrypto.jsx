@@ -53,7 +53,7 @@ export default function AddCrypto() {
         </div>
 
         <div
-          className="container col-md-6 mx-auto col-lg-5 mt-4"
+          className="container col-xl-4 col-lg-4 col-md-8 col-sm-10 mx-auto mt-4"
           style={{ zIndex: 99 }}
         >
           <div

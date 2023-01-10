@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom"
 const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
+import useAuth from "../../Apps/Hook/useAuth"
+import logo from "../../../src/Images/logo.svg"
 
 export default function Navbar() {
+  const { setAuth } = useAuth()
+  const handelAuth = () => {
+    setAuth()
+  }
+
   return (
     <nav
       className="d-print-none navbar navbar-expand-lg navbar-light bg-light"
@@ -33,9 +40,17 @@ export default function Navbar() {
         >
           <i className="bi bi-list-ul"></i>
         </button>
+        <Link to="/" className="navbar-brand" href="#">
+          <img
+            src={logo}
+            height="25"
+            className="d-inline-block align-text-top mx-2 navbar-brand fw-light"
+          />
+          BeeCoin
+        </Link>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <form className="d-flex">
+          {/* <form className="d-flex">
             <input
               className="form-control me-2"
               type="search"
@@ -45,10 +60,10 @@ export default function Navbar() {
             <button className="btn btn-outline-success" type="submit">
               Search
             </button>
-          </form>
+          </form> */}
 
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a
                 className="nav-link disabled"
                 href="#"
@@ -57,7 +72,7 @@ export default function Navbar() {
               >
                 Disabled
               </a>
-            </li>
+            </li> */}
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -87,7 +102,11 @@ export default function Navbar() {
                   <hr className="dropdown-divider" />
                 </li>
                 <li>
-                  <Link to={"/login"} className="dropdown-item">
+                  <Link
+                    to={"/login"}
+                    onClick={handelAuth}
+                    className="dropdown-item"
+                  >
                     Log Out
                   </Link>
                 </li>

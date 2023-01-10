@@ -1,7 +1,7 @@
 import "./../../Styles/Hero.css"
 
 export function Hero_0() {
-  const pop_msg = "hhrh"
+  const pop_msg = "Haxeri"
   return (
     <article>
       <div className="home-container ">
@@ -215,27 +215,23 @@ export function Hero_1() {
   return (
     <section className="p-relative">
       <div className="px-4 pt-5 my-5 text-center border-bottom">
-        <h1 className="display-4 fw-bold">Centered screenshot</h1>
+        <h1 className="display-4 fw-bold">About Cryptocurrency</h1>
         <div className="col-lg-6 mx-auto">
-          <p className="lead mb-4">
-            Quickly design and customize responsive mobile-first sites with
-            Bootstrap, the world’s most popular front-end open source toolkit,
-            featuring Sass variables and mixins, responsive grid system,
-            extensive prebuilt components, and powerful JavaScript plugins.
+          <p className="lead">
+            Cryptocurrency is a digital or virtual currency that uses
+            cryptography for security. It is decentralized, meaning it is not
+            controlled by any government or institution. The most well-known
+            cryptocurrency is Bitcoin, but there are thousands of other
+            cryptocurrencies in existence.
           </p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-            <button
+            <a
+              href="https://en.wikipedia.org/wiki/Cryptocurrency"
               type="button"
-              className="btn btn-primary btn-lg px-4 me-sm-3"
+              className="btn btn-outline-secondary btn-lg px-4 me-sm-3"
             >
-              Primary button
-            </button>
-            <button
-              type="button"
-              className="btn btn-outline-secondary btn-lg px-4"
-            >
-              Secondary
-            </button>
+              Learn More
+            </a>
           </div>
         </div>
         <div className="overflow-hidden">

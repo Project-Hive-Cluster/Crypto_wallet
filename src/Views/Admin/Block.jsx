@@ -117,7 +117,7 @@ export default function Block() {
                       </td>
                       <td className="text-wrap text-break">{owner.contact}</td>
                       <td className="text-wrap text-break">
-                        {body.replace(/"/g, "")}
+                        {JSON.stringify(body).replace(/"|\\|}|{|\|/g, "")}
                       </td>
                     </tr>
                   )

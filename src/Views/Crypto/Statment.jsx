@@ -10,13 +10,13 @@ import "react-loading-skeleton/dist/skeleton.css"
 
 const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
 import logo from "../../Images/snowflake-snow-svgrepo-com.svg"
-
+import CryptoPaisha from "../../../src/Images/logo.svg"
 // Context
 import useAuth from "../../Apps/Hook/useAuth"
 
-export default function Report() {
+export default function Statment() {
   let timestamp = new Date().toString()
-  timestamp = moment(timestamp).format("MMM Do YYYY, h:mm a")
+  // timestamp = moment(timestamp).format("MMM Do YYYY, h:mm a")
 
   const { auth } = useAuth()
   const walletid = auth.walletid
@@ -30,12 +30,16 @@ export default function Report() {
     contact: "Null",
   })
 
-  console.log("time", period)
-
+  let updateCredit = 0
+  let updateDebit = 0
+  let updateSum = 0
+  const handlePrint = () => {
+    window.print()
+  }
   const handelSubmit = () => {
     const options = {
       method: "POST",
-      url: api + `${period ? "/vartix/statment" : "/vartix/statment_period"}`,
+      url: api + `${period ? "/vartix/statment_period" : "/vartix/statment"}`,
       data: period
         ? { walletid: walletid, from: fromDate, to: toDate }
         : { walletid: walletid },
@@ -83,31 +87,37 @@ export default function Report() {
   return (
     <div className="">
       <div className="row p-2">
-        <div className="col-2">
+        <div className="col-2 d-print-none">
           <div className="p-1 m-3">
             {period ? (
               <>
-                <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">
+                <div className="mb-3">
+                  <label
+                    htmlFor="exampleFormControlInput1"
+                    className="form-label"
+                  >
                     From
                   </label>
                   <DatePicker
                     onChange={setFromDate}
                     value={fromDate}
                     maxDate={new Date()}
-                    class="form-control"
+                    className="form-control"
                   />
                 </div>
 
-                <div class="input-group">
-                  <label for="exampleFormControlInput1" class="form-label">
+                <div className="input-group">
+                  <label
+                    htmlFor="exampleFormControlInput1"
+                    className="form-label"
+                  >
                     To
                   </label>
                   <DatePicker
                     onChange={setToDate}
                     value={toDate}
                     maxDate={new Date()}
-                    class="form-control"
+                    className="form-control"
                   />
                 </div>
               </>
@@ -115,9 +125,10 @@ export default function Report() {
               <></>
             )}
 
-            <div class="form-check form-switch mt-3">
+            <div className="form-check form-switch mt-3">
               <input
-                class="form-check-input"
+                disabled
+                className="form-check-input"
                 type="checkbox"
                 role="switch"
                 id="flexSwitchCheckDefault"
@@ -125,67 +136,85 @@ export default function Report() {
                 onChange={(e) => setPeriod(e.target.checked)}
               />
 
-              <label class="form-check-label" for="flexSwitchCheckDefault">
-                Period
+              <label
+                className="form-check-label"
+                htmlFor="flexSwitchCheckDefault"
+              >
+                Period <span className="badge text-bg-danger ">Disabled</span>
               </label>
             </div>
 
             <button
               type="button"
-              className="btn btn-primary w-100"
+              className="btn btn-outline-primary w-100 mt-2"
               onClick={handelSubmit}
             >
               Search
             </button>
+
+            <button
+              type="button "
+              className="btn w-100 mt-1 btn-outline-secondary"
+              onClick={handlePrint}
+            >
+              Print
+            </button>
           </div>
         </div>
-        <div className="col-10">
+
+        <div className="col-lg-10">
           <div className="row container coloums">
-            <div style={{ backgroundColor: "#DEDEDE" }}>
-              <div className="container text-center">
+            <div>
+              <div className="container">
                 <div className="row p-3">
-                  <div className="col-10 text-center align-items-center">
-                    <br />
-                    <h2>Statment</h2>
+                  <div className="col-8 align-items-center">
+                    <img src={CryptoPaisha} height="80px" />
+                    {/* <address className="text-wrap col-4 ">
+                      beeCoin
+                      <br />
+                      1355 Market St, Suite 900 San Francisco, CA 94103 P: (123)
+                      456-7890
+                    </address> */}
                   </div>
-                  <div className="col-2">
-                    <div className="row">
-                      <img src={logo} height="50px" />
-                      <h1>Crypto</h1>
-                    </div>
+                  <div className="col-4">
+                    <strong>Wallet</strong>:{walletid}
+                    <br />
+                    <strong>Titel</strong>:{user.firstname} {user.lastname}
+                    <br />
+                    <strong>Contact</strong>:{user.contact}
+                    {period ? (
+                      <>
+                        <br />
+                        <strong>Period </strong>
+                        {moment(fromDate).format("ll")}
+                        <strong> To </strong>
+                        {moment(toDate).format("ll")}
+                      </>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
               </div>
-              <div className="row p-3">
-                <div className="col-6">
-                  <strong>Wallet</strong>:{walletid}
-                  <br />
-                  <strong>Titel</strong>:{user.firstname} {user.lastname}
-                  <br />
-                  <strong>Contact</strong>:{user.contact}
-                </div>
-                <div className="col-6">
-                  <strong>Period</strong>:hebghby<strong> To </strong>
-                  <br />
-                  <strong>TimeStamp</strong>:{timestamp}
-                  <br />
-                </div>
+              <div className="row text-center p-1">
+                <h4>Statment</h4>
               </div>
             </div>
 
             <div className="container col-12 row">
-              <table className="table table-striped">
+              <table className="table table-striped table-sm">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Date & Time</th>
-                    <th scope="col">Source</th>
-                    <th scope="col">Destenition</th>
-                    <th scope="col">Amount</th>
+                    <th scope="col">Timestamp</th>
+                    <th scope="col">TR No</th>
+                    <th scope="col">Debit</th>
+                    <th scope="col">Credit</th>
+                    <th scope="col">Balance</th>
                     <th scope="col">Remarks</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="">
                   {!table ? (
                     <tr key="111">
                       <th scope="row">
@@ -216,7 +245,10 @@ export default function Report() {
                         { transaction_no, debit, credit, timestamp, body },
                         index
                       ) => {
-                        // while (index < 10) {
+                        updateDebit = updateDebit + debit
+                        updateCredit = updateCredit + credit
+                        updateSum = updateSum - debit
+                        updateSum = updateSum + credit
                         return (
                           <tr key={"uuid" + index}>
                             <td>
@@ -230,14 +262,23 @@ export default function Report() {
                             <td>{transaction_no}</td>
                             <td>{debit}</td>
                             <td>{credit}</td>
+                            <td>{updateSum}</td>
                             <td className="text-wrap text-break">{body}</td>
                           </tr>
                         )
-                        // }
                       }
                     )
                   )}
+
+                  <tr className="table-group-divider">
+                    <td colSpan={3}></td>
+                    <td className="fw-bold">{updateDebit}</td>
+                    <td className="fw-bold">{updateCredit}</td>
+                    <td className="fw-bold">{updateSum}</td>
+                    <td colSpan={1}></td>
+                  </tr>
                 </tbody>
+                <caption>Timestamp:{timestamp}</caption>
               </table>
             </div>
           </div>

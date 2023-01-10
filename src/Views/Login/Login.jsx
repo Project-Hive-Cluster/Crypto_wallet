@@ -1,14 +1,15 @@
-import { useState, useRef } from "react"
+import { useState } from "react"
+import { Link } from "react-router-dom"
 import axios from "axios"
 // import { useCookies } from "react-cookie"
-import { Link, useNavigate, useLocation } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import jwt_decode from "jwt-decode"
 
 // components
 import "./login.css"
-import CryptoPaisha from "../../../Images/logo.svg"
+import CryptoPaisha from "../../Images/logo.svg"
 import CardBgAni from "./CardAnimation"
-import useAuth from "../../../Apps/Hook/useAuth"
+import useAuth from "../../Apps/Hook/useAuth"
 // Variable
 const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
 
@@ -26,6 +27,13 @@ export default function Login(props) {
   const handleSubmit = (e) => {
     e.preventDefault()
     try {
+      if (!user) {
+        alert("User Cannot be null")
+      }
+      if (!pwd) {
+        alert("Password Cannot be null")
+      }
+
       const options = {
         method: "POST",
         url: api + "/auth",
@@ -36,20 +44,23 @@ export default function Login(props) {
       }
       axios
         .request(options)
-        .then(function (response) {
-          console.log(response.data)
+        .then((response, error) => {
+          const response_data = response.data
+
+          if (!response_data.token) {
+            alert("Error: " + JSON.stringify(response_data))
+          }
           // setCookie("auth", response.data.token, { path: "/" })
           // setCookie("refrash", response.data.refreshToken, { path: "/" })
           let decoded = undefined
-
           try {
-            decoded = jwt_decode(response.data.token)
+            decoded = jwt_decode(response_data.token)
           } catch (e) {
             console.log(e)
           }
           const walletid = decoded.walletid
           const publickey = decoded.key
-          const accessToken = response.data.token
+          const accessToken = response_data.token
           setAuth({ user, pwd, accessToken, walletid, publickey })
           setUser("")
           setPwd("")
@@ -150,6 +161,12 @@ export default function Login(props) {
                         >
                           Login
                         </button>
+                        <Link
+                          to={"/signup"}
+                          className="btn btn-outline-primary mt-3"
+                        >
+                          Register
+                        </Link>
                         <br />
                         {/* <Link to="/" className="btn btn-primary">
                           Emergeency Login
