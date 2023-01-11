@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-// Element for Routes
+// Element htmlFor Routes
 import FundTransfer from "../Views/Admin/Transfer"
 import SendCrypto from "../Views/Crypto/SentCrypto"
 import Landing from "../Views/Container"
@@ -14,6 +14,7 @@ import Register from "../Views/Login/Register"
 import Block from "../Views/Admin/Block"
 import Admin from "../Views/Admin/Admin"
 import RequireAuth from "../Views/RequireAuth"
+import PasswordChange from "../Views/Home/PasswordChange"
 // Additional configuration
 import AuthContext from "../Apps/Context/AuthContext"
 
@@ -32,6 +33,7 @@ export default function DefaultRouter() {
             <Route path="/Block" element={<Block />} />
             <Route path="/Transfer" element={<FundTransfer />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/change_passwd" element={<PasswordChange />} />
             <Route path="/*" element={<Error404 />} />
           </Route>
         </Route>

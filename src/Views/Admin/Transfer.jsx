@@ -173,7 +173,7 @@ export default function FundTransfer() {
               </div>
             </div>
 
-            <p className="col-lg-10 fs-4 ">Reciver</p>
+            <p className="col-lg-10 fs-4 ">Receiver</p>
             <div className="form-floating mb-3">
               <input
                 type="number"

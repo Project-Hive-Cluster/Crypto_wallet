@@ -29,7 +29,7 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </a>
 
-        <button
+        {/* <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -39,8 +39,8 @@ export default function Navbar() {
           aria-label="Toggle navigation"
         >
           <i className="bi bi-list-ul"></i>
-        </button>
-        <Link to="/" className="navbar-brand" href="#">
+        </button> */}
+        <Link to="/" className="navbar-brand mx-4" href="#">
           <img
             src={logo}
             height="25"
@@ -49,30 +49,9 @@ export default function Navbar() {
           BeeCoin
         </Link>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          {/* <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form> */}
-
+        {/* <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            {/* <li className="nav-item">
-              <a
-                className="nav-link disabled"
-                href="#"
-                tabIndex="-1"
-                aria-disabled="true"
-              >
-                Disabled
-              </a>
-            </li> */}
+
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -94,9 +73,9 @@ export default function Navbar() {
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
+                  <Link to={"/change_passwd"} className="dropdown-item">
+                    Change Password
+                  </Link>
                 </li>
                 <li>
                   <hr className="dropdown-divider" />
@@ -113,7 +92,7 @@ export default function Navbar() {
               </ul>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </nav>
   )

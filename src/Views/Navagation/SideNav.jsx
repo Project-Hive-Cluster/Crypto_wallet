@@ -7,7 +7,10 @@ const api = `http://${import.meta.env.VITE_API}:${import.meta.env.VITE_PORT}`
 import useAuth from "../../Apps/Hook/useAuth"
 
 export default function SideNav() {
-  const { auth } = useAuth()
+  const { auth, setAuth } = useAuth()
+  const handelAuth = () => {
+    setAuth()
+  }
   const [balance, setBalance] = useState("***")
   const [btn, setBtn] = useState(false)
 
@@ -36,7 +39,7 @@ export default function SideNav() {
         setBalance(res_temp)
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
       })
   }
 
@@ -153,6 +156,16 @@ export default function SideNav() {
             </div>
           </div>
         </div>
+        <nav className="nav flex-column mt-2">
+          <Link
+            style={{ borderradius: "25px" }}
+            className="nav-link btn-danger text-light btn"
+            to={"/login"}
+            onClick={handelAuth}
+          >
+            Logout
+          </Link>
+        </nav>
       </div>
     </div>
   )
@@ -181,6 +194,9 @@ export const RegistationNav = () => {
       </Link>
       <Link className="nav-link" to={"/Statment"}>
         Statment
+      </Link>
+      <Link className="nav-link" to={"/change_passwd"}>
+        Change Password
       </Link>
     </nav>
   )

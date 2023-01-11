@@ -219,8 +219,8 @@ export function Hero_1() {
         <div className="col-lg-6 mx-auto">
           <p className="lead">
             Cryptocurrency is a digital or virtual currency that uses
-            cryptography for security. It is decentralized, meaning it is not
-            controlled by any government or institution. The most well-known
+            cryptography htmlFor security. It is decentralized, meaning it is
+            not controlled by any government or institution. The most well-known
             cryptocurrency is Bitcoin, but there are thousands of other
             cryptocurrencies in existence.
           </p>

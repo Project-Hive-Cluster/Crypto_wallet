@@ -56,7 +56,7 @@ export default function Login(props) {
           try {
             decoded = jwt_decode(response_data.token)
           } catch (e) {
-            console.log(e)
+            console.error(e)
           }
           const walletid = decoded.walletid
           const publickey = decoded.key
