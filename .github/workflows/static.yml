@@ -31,18 +31,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Build
-        run: |
-          # Assuming you have a build script for your static website
-          cd demo
-          # Replace the following command with your build command
-          # e.g., npm run build, yarn build, or any other build command
-          echo "Building static website..."
-          # Build command goes here
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          # Deploy the contents of the "demo" folder
-          # Update this path if your static website is located in a different folder
-          folder: demo
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./demo
+          publish_branch: gh-pages
